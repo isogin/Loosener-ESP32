@@ -11,12 +11,12 @@
 BLECharacteristic *pCharacteristic;
 ICM42670 IMU(Wire, 0x69);
 
-const int pressureSensorPin1 = 34; //圧力センサ用のアナログピン 1つ目
-const int pressureSensorPin2 = 35; //圧力センサ用のアナログピン 2つ目
+const int pressureSensorPin_1 = 34; //圧力センサ用のアナログピン 1つ目
+const int pressureSensorPin_2 = 35; //圧力センサ用のアナログピン 2つ目
 bool isMeasureStart = false;
 
-float pressureData1[60];
-float pressureData2[60];
+float pressureData_1[60];
+float pressureData_2[60];
 float velocityData[60];
 
 float accX, accY, accZ;
