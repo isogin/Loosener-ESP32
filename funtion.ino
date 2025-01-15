@@ -41,11 +41,18 @@ void initializeBLE() {
 
 
 
-// 圧力センサの値を取得
-float readPressureSensor() {
-  int pressureValue = analogRead(pressureSensorPin);
-  return (4095.0 / pressureValue * 600.0) - 600.0;
+// 圧力センサ1の値を取得
+float readPressureSensor1() {
+  int pressureValue1 = analogRead(pressureSensorPin1);
+  return (4095.0 / pressureValue1 * 600.0) - 600.0;
 }
+
+// 圧力センサ2の値を取得
+float readPressureSensor2() {
+  int pressureValue2 = analogRead(pressureSensorPin2);
+  return (4095.0 / pressureValue2 * 600.0) - 600.0;
+}
+
 
 // 加速度センサとジャイロセンサの値を更新
 void updateSensorData() {
@@ -66,8 +73,10 @@ void performMeasurement() {
   const int totalSize = 40; // 全データ数
 
   for (int m = 0; m < totalSize; m++) {
-    // 圧力センサの値を読み取る
-    pressureData[m] = readPressureSensor();
+    // 圧力センサ1の値を読み取る
+    pressureData1[m] = readPressureSensor1();
+    //圧力センサ2の値を読み取る
+    pressureData2[m] = readPressureSensor2();
     // 加速度センサの値を更新
     updateSensorData();
 
@@ -92,7 +101,7 @@ void performMeasurement() {
 String buildChunkData(int startIdx, int endIdx) {
   String chunkData = "";
   for (int n = startIdx; n < endIdx; n++) {
-    chunkData += String(velocityData[n], 2) + "," + String(pressureData[n], 2);
+    chunkData += String(velocityData[n], 2) + "," + String(pressureData1[n], 2) + String(pressureData2[n], 2);
     if (n != endIdx - 1) {
       chunkData += ",";  // 各データの区切り
     }
