@@ -101,6 +101,7 @@ void performMeasurement() {
 String buildChunkData(int startIdx, int endIdx) {
   String chunkData = "";
   for (int n = startIdx; n < endIdx; n++) {
+    //2進数に変換して結合
     chunkData += String(velocityData[n], 2) + "," + String(pressureData_1[n], 2) + String(pressureData_2[n], 2);
     if (n != endIdx - 1) {
       chunkData += ",";  // 各データの区切り
